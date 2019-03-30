@@ -1,0 +1,6 @@
+".compile.static.brd"
+(print "Ok!")
+
+(define $root-tmp (fsReadText "templates\base.page.html"))
+
+(str-replace)

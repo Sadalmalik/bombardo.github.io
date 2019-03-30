@@ -1,0 +1,47 @@
+/*!
+ * Блааа бла бла
+**/
+
+.bg-dark {
+  background-color: #1b1e20 !important;
+}
+
+.text-indent {
+  text-indent: 1.2em;
+}
+
+
+a.list-group-item {
+	text-decoration: none;
+}
+
+.list-group-item {
+	border: 0px;
+	padding: 0.25rem 1.25rem;
+}
+
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 35px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 50px;
+}
