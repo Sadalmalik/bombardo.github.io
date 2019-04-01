@@ -4,3 +4,10 @@
 (define $root-tmp (fsReadText "templates\base.page.html"))
 
 (str-replace)
+
+
+
+
+(define config `(page))
+
+
