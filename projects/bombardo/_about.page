@@ -48,26 +48,26 @@
 
 <p class="text-indent">
 	Точечная пара:
-	<code><pre>
+	<pre class="code-block">
 	( symbolA . symbolB )
-	</code></pre>
+	</pre>
 	Цепочка пар является списком. Эти две записи эквивалентны:
-	<code><pre>
+	<pre class="code-block">
 	( a . ( b . ( c . null )))
 	( a b c )
-	</code></pre>
+	</pre>
 </p>
 <p class="text-indent">
 	Язык поддерживает два типа скобок: круглые и квадратные.
 	Скобки равнозначны между собой, но нельзя сочетать разные скобки^
-	<code><pre>
+	<pre class="code-block">
 		;   Корректно
 		( exp )
 		[ exp ]
 		;   Некорректно
 		( exp ]
 		[ exp )
-	</code></pre>
+	</pre>
 </p>
 
 <p class="text-indent">
@@ -75,9 +75,9 @@
 </p>
 <p class="text-indent">
 	Исполнение программы производится сходным с лисплм образом.
-	<code><pre>
+	<pre class="code-block">
 	( procedureName argument1 argument2 ... )
-	</code></pre>
+	</pre>
 </p>
 <p class="text-indent">
 	Сначала интерпретатор исполняет голову списка procedureName.<br>
@@ -111,29 +111,29 @@
 </p>
 <p class="text-indent">
 	Функция объявляется выражением:
-	<code><pre>
+	<pre class="code-block">
 		(lambda (arguments) body )
-	</code></pre>
+	</pre>
 </p>
 <p class="text-indent">
 	Макрос:
-	<code><pre>
+	<pre class="code-block">
 		(macros (arguments) body )
-	</code></pre>
+	</pre>
 </p>
 <p class="text-indent">
 	Кроме того есть форма с явным определением флагов исполнения:
-	<code><pre>
+	<pre class="code-block">
 		(syntax (arg res) (arguments) body )
-	</code></pre>
+	</pre>
 	Где arg - флаг указывающий нужно ли исполнять аргументы перед вызовом
 	А res - флаг указывающий исполнять ли результат функции.
 	Таким образом следующие выражения эквивалентны:
-	<code><pre>
+	<pre class="code-block">
 		(lambda (arguments) body ) <--> (syntax (true false) (arguments) body )
 
 		(macros (arguments) body ) <--> (syntax (false true) (arguments) body )
-	</code></pre>
+	</pre>
 </p>
 
 
