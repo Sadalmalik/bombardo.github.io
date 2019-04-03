@@ -11,7 +11,8 @@
 }
 
 .code-block {
-  margin-left: 1.2em;
+  margin-left: 1.4em;
+  padding: 0.4em 1.2em 0.8em;
   border-left: 6px solid #060606;
   background-color: #222;
 }
