@@ -77,7 +77,9 @@
 				(set! $html (strReplace $html "{{content}}" $content))
 
 				(fsCreateDirectory (fsPathCombine $path $pagePath))
-				(fsWriteText (fsPathCombine $path $pagePath "index.html") $html)
+				(define $finalPath [normalizePath (fsPathCombine $path $pagePath "index.html")])
+				(fsWriteText $finalPath $html)
+				(print "Page created: " $finalPath)
 			]
 		)
 	))
