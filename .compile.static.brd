@@ -55,7 +55,6 @@
 	(set! $links (reverse $links))
 
 	(define $navigation (apply strConcat $links))
-	(print "Navigation: " $navigation)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
