@@ -44,7 +44,7 @@
 			$tempNavRegular
 		))
 
-		(define $href [normalizePath (fsPathCombine $path $pagePath)])
+		(define $href (strConcat "/" [normalizePath (fsPathCombine $path $pagePath)]))
 		
 		(define $link)
 		(set! $link (strReplace $temp "{{href}}" $href))
@@ -55,6 +55,7 @@
 	(set! $links (reverse $links))
 
 	(define $navigation (apply strConcat $links))
+	(print "Navigation: " $navigation)
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
