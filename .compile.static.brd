@@ -1,13 +1,88 @@
 ".compile.static.brd"
-(print "Ok!")
+(require "BaseLang" importAll)
 
-(define $root-tmp (fsReadText "templates\base.page.html"))
+(defFunct	[isBrandLink? $flagSet]
+			[contains? $flagSet `brandLink])
 
-(str-replace)
+(defFunct	[isNoCompile? $flagSet]
+			[contains? $flagSet `noCompile])
+
+(defFunct	[normalizePath $path]
+			[strReplace $path "\\" "/"])
+
+(defFunct [CompileSite $configPath]
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;	Читаем конфиг и шаблоны
+	(define $config (load $configPath))
+
+	(if [neq? (car $config) `SiteConfig]
+		[error `CompileSite "Wrong site config format!"])
+
+	(define $path (fsPathGetDirectoryName $configPath))
+
+	(define $title	(cadr $config))
+	(define $temps	(caddr $config))
+	(define $pages	(cadddr $config))
+
+	(define $tempPage		(fsReadText [fsPathCombine $path (car $temps)]))
+	(define $tempNavBrand	(fsReadText [fsPathCombine $path (cadr $temps)]))
+	(define $tempNavRegular	(fsReadText [fsPathCombine $path (caddr $temps)]))
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;	Создаём навигационную панель
+	(define $links)
+	(each $pages (lambda [$page]
+		(define $flags		(car $page))
+		(define $pagePath	(cadr $page))
+		(define $text		(caddr $page))
 
-(define config `(page))
+		(define $temp (if [isBrandLink? $flags]
+			$tempNavBrand
+			$tempNavRegular
+		))
+
+		(define $href [normalizePath (fsPathCombine $path $pagePath)])
+		
+		(define $link)
+		(set! $link (strReplace $temp "{{href}}" $href))
+		(set! $link (strReplace $link "{{text}}" $text))
+
+		(set! $links (cons $link $links))
+	))
+	(set! $links (reverse $links))
+
+	(define $navigation (apply strConcat $links))
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;	Генерируем страницы
+	(each $pages (lambda [$page]
+		(define $flags		(car $page))
+		(define $pagePath	(cadr $page))
+		(define $contPath	(cadddr $page))
+
+		(if [isNoCompile? $flags]
+			null
+			[block
+				(define $content (fsReadText [fsPathCombine $path $contPath]))
+
+				(define $html $tempPage)
+				(set! $html (strReplace $html "{{title}}" $title))
+				(set! $html (strReplace $html "{{navigation}}" $navigation))
+				(set! $html (strReplace $html "{{content}}" $content))
+
+				(fsCreateDirectory (fsPathCombine $path $pagePath))
+				(fsWriteText (fsPathCombine $path $pagePath "index.html") $html)
+			]
+		)
+	))
+)
+
+
+
+(CompileSite "projects/bombardo/.config.static.brd")
