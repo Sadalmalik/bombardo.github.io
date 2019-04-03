@@ -87,27 +87,22 @@
 </p>
 
 <p class="text-indent">
-	Точечная пара:
-	<pre class="code-block">
-	( symbolA . symbolB )
-	</pre>
-	Цепочка пар является списком. Эти две записи эквивалентны:
-	<pre class="code-block">
-	( a . ( b . ( c . null )))
-	( a b c )
-	</pre>
+	<pre class="code-block">;	Точечная пара:
+( symbolA . symbolB )
+
+;	Цепочка пар является списком. Эти две записи эквивалентны:
+( a . ( b . ( c . null )))
+( a b c )</pre>
 </p>
 <p class="text-indent">
 	Язык поддерживает два типа скобок: круглые и квадратные.
 	Скобки равнозначны между собой, но нельзя сочетать разные скобки^
-	<pre class="code-block">
-		;   Корректно
-		( exp )
-		[ exp ]
-		;   Некорректно
-		( exp ]
-		[ exp )
-	</pre>
+	<pre class="code-block">;   Корректно
+( exp )
+[ exp ]
+;   Некорректно
+( exp ]
+[ exp )</pre>
 </p>
 
 <p class="text-indent">
@@ -115,9 +110,7 @@
 </p>
 <p class="text-indent">
 	Исполнение программы производится сходным с лисплм образом.
-	<pre class="code-block">
-	( procedureName argument1 argument2 ... )
-	</pre>
+	<pre class="code-block">( procedureName argument1 argument2 ... )</pre>
 </p>
 <p class="text-indent">
 	Сначала интерпретатор исполняет голову списка procedureName.<br>
@@ -151,29 +144,21 @@
 </p>
 <p class="text-indent">
 	Функция объявляется выражением:
-	<pre class="code-block">
-		(lambda (arguments) body )
-	</pre>
+	<pre class="code-block">(lambda (arguments) body )</pre>
 </p>
 <p class="text-indent">
 	Макрос:
-	<pre class="code-block">
-		(macros (arguments) body )
-	</pre>
+	<pre class="code-block">(macros (arguments) body )</pre>
 </p>
 <p class="text-indent">
 	Кроме того есть форма с явным определением флагов исполнения:
-	<pre class="code-block">
-		(syntax (arg res) (arguments) body )
-	</pre>
+	<pre class="code-block">(syntax (arg res) (arguments) body )</pre>
 	Где arg - флаг указывающий нужно ли исполнять аргументы перед вызовом
 	А res - флаг указывающий исполнять ли результат функции.
 	Таким образом следующие выражения эквивалентны:
-	<pre class="code-block">
-		(lambda (arguments) body ) <--> (syntax (true false) (arguments) body )
+	<pre class="code-block">(lambda (arguments) body ) <--> (syntax (true false) (arguments) body )
 
-		(macros (arguments) body ) <--> (syntax (false true) (arguments) body )
-	</pre>
+(macros (arguments) body ) <--> (syntax (false true) (arguments) body )</pre>
 </p>
 
 
