@@ -72,6 +72,13 @@
 			[block
 				(define $content (fsReadText [fsPathCombine $path $contPath]))
 
+				(print "")
+				(print "")
+				(print "Content:")
+				(print $content)
+				(print "")
+				(print "")
+
 				(define $html $tempPage)
 				(set! $html (strReplace $html "{{title}}" $title))
 				(set! $html (strReplace $html "{{navigation}}" $navigation))
