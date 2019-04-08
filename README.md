@@ -9,12 +9,13 @@ test some stuff
 
 test another
 
-* a
-* b
- * x
- * y
- * z
+- a
+- b
+ - x
+ - y
+ - z
 
 ```lisp
 (define delta caddr)
 ```
+okay
