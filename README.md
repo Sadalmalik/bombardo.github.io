@@ -11,9 +11,9 @@ test another
 
 * a
 * b
-** x
-** y
-** z
+ * x
+ * y
+ * z
 
 ```lisp
 (define delta caddr)
