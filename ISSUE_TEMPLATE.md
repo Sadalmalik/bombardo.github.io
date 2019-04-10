@@ -1,1 +1,0 @@
-﻿ISSUE_TEMPLATE.md
