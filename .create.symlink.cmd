@@ -6,7 +6,7 @@ rem Увы, без адовых костылей в batch красиво не получается
 
 set path=%~dp0
 call :unquote path %path%
-MKLINK /D "%path%bombardo" "%path%..\bombardo\BombardoExamples\Bombardo"
+MKLINK /D "%path%bombardo" "%path%..\bombardo\Examples\Bombardo"
 
 PAUSE
 EXIT<
