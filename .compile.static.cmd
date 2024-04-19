@@ -1,1 +1,0 @@
-bombardo\BombardoApp.exe .compile.static.brd

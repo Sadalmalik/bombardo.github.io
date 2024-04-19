@@ -1,22 +1,3 @@
-# bombardo.github.io
+# Test
 
-test some stuff
-
-1. one
-2. two
-3. three
-3. four
-
-test another
-
-- a
-- b
-  - x
-  - y
-  - z
-    - teta
-
-```lisp
-(define delta caddr)
-```
-okay
+Testing github pages in most empty way!
