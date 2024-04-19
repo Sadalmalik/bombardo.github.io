@@ -1,8 +1,9 @@
 title: Test Title
 description: Test description
+show_downloads: false
 plugins:
   - jekyll-relative-links
-theme: jekyll-theme-hacker
+theme: jekyll-theme-midnight
 relative_links:
   enabled: true
   collections: true
